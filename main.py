@@ -10,6 +10,7 @@ def show_menu():
 
 # ------------------------------------------------------
 books = []
+borrow_book = []
 def add_book():
     book_name = input("Enter book name: ")
     book_author = input("Enter book author: ")
@@ -49,13 +50,28 @@ print("Books displayed successfully!")
 
 #-------------------------------------------------------
 def search_book():
-	book_name= input("Search book name: ")
-	for x in books:
-		if book_name==x["name"]:
-			print ("book found")
-		else:
-			print("books not found")
-#-------------------------------------------------------
+    book_name = input("Search book name: ")
+
+    for x in books:
+        if book_name == x["name"]:
+            print("Book Found")
+            return
+
+    print("Book Not Found")
+#----------------------------------------------------------
+
+def borrow(): 
+    book_rent=input("Enter the book name U want to Rent:\n")
+    for x in books:
+        if book_rent == x["name"] and len(books) != 0:
+              borrow_book.append(x)
+              books.remove(x)
+            # print("hello")
+        else:
+              print("Book Does not Exist!!!!")
+
+
+# -----------------------------------------------------------
 while True:
     show_menu()
     choice = input("Enter your choice: ")
@@ -65,6 +81,8 @@ while True:
         display_books()
     elif choice == '3':
         search_book()
+    elif choice == '4':
+        borrow()
     elif choice == '7':
         print('exit')
         break
